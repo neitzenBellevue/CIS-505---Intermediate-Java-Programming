@@ -3,10 +3,10 @@
  */
 public class Fan {
     //The following are the Class Variables
-    final int STOPPED = 0;
-    final int SLOW = 1;
-    final int MEDIUM = 2;
-    final int FAST = 2;
+    final static int STOPPED = 0;
+    final static int SLOW = 1;
+    final static int MEDIUM = 2;
+    final static int FAST = 3;
     private int speed;
     private boolean on;
     private double radius;
@@ -14,9 +14,9 @@ public class Fan {
 
     //Default Constructor Method
     public Fan(){
-        int speed = STOPPED;
-        boolean on = false;
-        double radius = 6;
+        speed = STOPPED;
+        on = false;
+        radius = 6;
         color = new String("White");
     } // End Fan
 
@@ -34,19 +34,22 @@ public class Fan {
         setColor(newColor);
     } // End Fan(int, bool, double, String)
 
+    // This overrides the default toString variable. Returns a descriptive string.
+    public String toString(){
+        String ldescription = new String();
+        if (getOn()){
+            ldescription = "The fan is " + getColor() + " with a radius of " + getRadius() + " and the fan is on.";
+        }
+        else{
+            ldescription = "The fan is " + getColor() + " with a radius of " + getRadius() + " and the fan is off.";
+        }
+        return ldescription;
+    } // End toString
+
     //This is a Accessor method for the "speed" variable
     public int getSpeed(){
         return speed;
     } // End getSpeed
-
-    public String toString(){
-        if getOn(){
-
-        }
-        else{
-
-        }
-    }
 
     //This is a Accessor method for the "on" variable
     public boolean getOn(){
@@ -64,10 +67,13 @@ public class Fan {
     } // End getColor
 
     /*
-     * This is a mutator method for the variable "speed"
+     * This is a mutator method for the variable "speed". Checks if newSpeed is valid then assigns it. Else, does not change.
      * @param newSpeed int
      */
     public void setSpeed(int newSpeed){
+        if(newSpeed > 0 || newSpeed < 4){
+            speed = newSpeed;
+        }
         speed = newSpeed;
     } // End setSpeed
 
