@@ -1,7 +1,6 @@
 /*
  * Eitzen, N. (2023). CIS 505 Intermediate Java Programming. Bellevue University
  */
-
 import java.util.Scanner;
 
 public class TestSportsTeamApp {
