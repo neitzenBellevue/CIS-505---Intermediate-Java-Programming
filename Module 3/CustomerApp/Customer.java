@@ -2,6 +2,8 @@
  * Eitzen, N. (2023). CIS 505 Intermediate Java Programming. Bellevue University
  */
 
+package CustomerApp;
+
 public class Customer {
 
     // The following are Class Variables
