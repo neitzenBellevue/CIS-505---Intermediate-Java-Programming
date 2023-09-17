@@ -23,13 +23,11 @@ public class Account {
     } // End deposit
 
     /*
-     * This method reduces the balance variable. Checks that the passed variable is negative.
+     * This method reduces the balance variable.
      * @param amt Double
      */
     public void withdraw(double amt){
-        if( amt <= 0){
-            this.balance -= amt;
-        }
+        this.balance -= amt;
     } // End withdraw
 
     // This prints a menu for users.
@@ -38,7 +36,7 @@ public class Account {
         System.out.println("  Enter <D/d> for deposit");
         System.out.println("  Enter <W/w> for withdraw");
         System.out.println("  Enter <B/b> for balance");
-        System.out.println("    Enter Option>: ");
+        System.out.print("    Enter Option>: ");
     } // End displayMenu
 
     // This prints out a date. No requirements were given for what the date should be.

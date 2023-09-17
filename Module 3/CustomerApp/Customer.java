@@ -38,10 +38,10 @@ public class Customer {
     // This method overrides the default toString method. It returns a string containing all private variables.
     public String toString(){
         StringBuilder str = new StringBuilder();
-        str.append(customer + "\n");
-        str.append(address + "\n");
-        str.append(city + "\n");
-        str.append(zip + "\n");
+        str.append("  Name: " + customer + "\n");
+        str.append("  Address: " + address + "\n");
+        str.append("  City: " + city + "\n");
+        str.append("  Zip: " + zip + "\n");
         return str.toString();
     } // End toString
 
