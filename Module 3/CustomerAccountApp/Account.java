@@ -2,7 +2,7 @@
  * Eitzen, N. (2023). CIS 505 Intermediate Java Programming. Bellevue University
  */
 
-package CustomerApp;
+package CustomerAccountApp;
 
 public class Account {
     private double balance = 200;
