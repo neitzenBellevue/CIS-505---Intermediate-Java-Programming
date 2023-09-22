@@ -21,9 +21,9 @@ public class Product {
     
     public String toString(){
         StringBuilder str = new StringBuilder();
-        str.append("  " + code + "\n");
-        str.append("  " + description + "\n");
-        str.append("  " + price + "\n");
+        str.append("  Product Code: " + code + "\n");
+        str.append("  Description: " + description + "\n");
+        str.append("  Price: $" + price + "\n");
         return str.toString();
     } // End toSTring();
 

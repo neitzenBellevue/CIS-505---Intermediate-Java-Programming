@@ -18,7 +18,7 @@ public class Ball extends Product{
     public String toString(){
         String tempString = new String();
         tempString = super.toString();
-        tempString += "\n  " + color;
+        tempString += "  Color: " + color;
         return tempString;        
     } // End toString()
 

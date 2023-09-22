@@ -1,6 +1,6 @@
 package BowlingShopApp;
 
-public class Shoe {
+public class Shoe extends Product{
     private double size;
 
     // The default Shoe constructor calls the super() constructor and assigns 0 to the size variable.
@@ -13,7 +13,7 @@ public class Shoe {
     public String toString(){
         String tempString = new String();
         tempString = super.toString();
-        tempString += "\n  " + Double.toString(size);
+        tempString += "  Shoe: " + Double.toString(size);
         return tempString; 
     } // End toString()
 

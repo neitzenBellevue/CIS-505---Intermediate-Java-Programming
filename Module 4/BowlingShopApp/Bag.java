@@ -1,6 +1,6 @@
 package BowlingShopApp;
 
-public class Bag {
+public class Bag extends Product{
     private String type;
 
     public Bag(){
@@ -12,7 +12,7 @@ public class Bag {
     public String toString(){
         String tempString = new String();
         tempString = super.toString();
-        tempString += "\n  " + type;
+        tempString += "  Type: " + type;
         return tempString; 
     } // End toString()
 
