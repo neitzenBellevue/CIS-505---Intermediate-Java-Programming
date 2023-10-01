@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class TestExpenseTracker {
     
+    // This method returns a string containing the transaction menu.
     public static String menu(){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("\n  Menu Options\n");
@@ -17,8 +18,12 @@ public class TestExpenseTracker {
         stringBuilder.append("    3. View Expense\n\n");
         stringBuilder.append("  Please choose an option: ");
         return stringBuilder.toString();
-    }
+    } // End menu()
 
+    /*
+     * The following main method runs the Expense Tracker app.
+     * @param args String[]
+     */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         boolean programLoop = true;
@@ -78,4 +83,4 @@ public class TestExpenseTracker {
             }
         } // End while(programLoop)
     } // End main(String[])
-} // Ed TestExpenseTracker
+} // End TestExpenseTracker
