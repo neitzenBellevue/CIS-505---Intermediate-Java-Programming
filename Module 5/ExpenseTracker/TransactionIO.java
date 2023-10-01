@@ -14,6 +14,7 @@ public class TransactionIO {
     // This variables create a new file. File name is static and final.
     private static final String FILE_NAME = "expenses.txt";
     private static File file = new File(FILE_NAME);
+    
 
     /*
      * This method takes an arraylist and prints the contents to a file.
@@ -49,6 +50,7 @@ public class TransactionIO {
             tempTransaction.setDescription(input.next());
             tempTransaction.setAmount(input.nextDouble());
             transactions.add(tempTransaction);
+            input.nextLine();
         } // End while(input.hasnext())
         return transactions;
     } // End findAll()

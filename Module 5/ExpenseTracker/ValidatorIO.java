@@ -13,8 +13,10 @@ public class ValidatorIO {
      * @param prompt String
      */
     public static String getString(Scanner sc, String prompt) {
-        System.out.println(prompt);
-        return sc.next(); 
+        System.out.print(prompt);
+        prompt = sc.next();
+        sc.nextLine();
+        return prompt; 
     } // End getString(Scanner, String)
 
     /*
@@ -27,13 +29,13 @@ public class ValidatorIO {
         boolean isValid = false;
 
         while(!isValid){
-            System.out.println(prompt);
+            System.out.print(prompt);
             if(sc.hasNextInt()){
                 input = sc.nextInt();
                 isValid = true;
             }
             else{
-                System.out.println("\n  Error! Invalid integer value.\n");
+                System.out.print("\n  Error! Invalid integer value.\n");
             }
             sc.nextLine();
         } // End While(!isValid)
@@ -48,15 +50,14 @@ public class ValidatorIO {
     public static double getDouble(Scanner sc, String prompt){
         double input = 0;
         boolean isValid = false;
-
         while(!isValid){
-            System.out.println(prompt);
+            System.out.print(prompt);
             if(sc.hasNextDouble()){
                 input = sc.nextDouble();
                 isValid = true;
             }
             else{
-                System.out.println("\n  Error! Invalid double value.\n");
+                System.out.print("\n  Error! Invalid double value.\n");
             }
             sc.nextLine();
         } // End While(!isValid)
