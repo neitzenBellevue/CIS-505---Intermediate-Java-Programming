@@ -4,6 +4,6 @@
 
 package ComposerApp;
 
-public class ComposerDao {
-    
-}
+public interface ComposerDao extends GenericDao<Composer, Integer> {
+    //See Super
+} // End ComposerDao

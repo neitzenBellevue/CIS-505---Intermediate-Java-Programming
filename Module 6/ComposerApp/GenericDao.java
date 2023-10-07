@@ -3,7 +3,10 @@
  */
 
 package ComposerApp;
+import java.util.List;
 
-public class GenericDao {
-    
-}
+public interface GenericDao<E,K> {
+    List<E> findAll();
+    E findBy(K key);
+    void insert(E entity);
+} // End GenericDao<E,K>
