@@ -34,12 +34,14 @@ public class TestComposerApp {
                 menuScanner.nextLine();
                 menuInput = 0;
             }
+            
             if(menuInput == 1){ // This option displays all composers.
                 System.out.println("\n\n  --DISPLAYING COMPOSERS--");
                 for(Composer composer : composers.findAll()){
                     System.out.print(composer.toString() + "\n");
                 }
             } // End menu option 1
+
             else if(menuInput == 2){ // This option displays a composer based on their ID. If there is no composer with that ID prints an error and returns to menu.
                 System.out.print("\n  Enter an ID: ");
                 try{ // This try/catch checks for valid integer input. If invalid input is detected it returns to the main menu. Increments menuScanner.
@@ -59,6 +61,7 @@ public class TestComposerApp {
                     menuInput = 0;
                 }
             } // End menu option 2
+
             else if(menuInput == 3){ // This option allows users to input a new composer.
                 Composer newComposer = new Composer();
                 System.out.print("\n  Enter an id: ");
@@ -78,11 +81,14 @@ public class TestComposerApp {
                     menuInput = 0;
                 }
             } // End menu option 3.
+
             else if(menuInput != 4){ // No instructions where given for what to do when an invalid number is given. Decided to print error text and loop again.
                 System.out.println("\n  Invalid Input. Please try again.");
             }
         } // End while(menuInput) Loop
-        System.out.println("\n  End of line..."); // I could not find explicit instructions for what to display when the program exits. 
-                                                    // I decided to use last weeks (Week 5) exit text.
+
+        System.out.println("\n  End of line..."); // I could not find explicit instructions for what to display when the program exits. I decided to use last weeks (Week 5) exit text.
+        menuScanner.close();       
+
     } // End Main(String[])
 } // End TestComposerApp
