@@ -3,18 +3,19 @@
  */
 
 package ComposerApp;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MemComposerDao implements ComposerDao {
-    private List<Composer> composers;
+    private List<Composer> composers = new ArrayList<Composer>();
 
     // This default constructor creates 5 Composer objects and adds them to the composers List.
     public MemComposerDao(){
-        Composer comp1 = new Composer();
-        Composer comp2 = new Composer();
-        Composer comp3 = new Composer();
-        Composer comp4 = new Composer();
-        Composer comp5 = new Composer();
+        Composer comp1 = new Composer(1007, "Ludwig Van Beethoven", "Classical");
+        Composer comp2 = new Composer(1008, "Johann Sebastian Bach", "Classical");
+        Composer comp3 = new Composer(1009, "Wolfgang Amadeus Mozart", "Classical");
+        Composer comp4 = new Composer(1010, "Johannes Brahms", "Classical");
+        Composer comp5 = new Composer(1011, "Joseph Haydn", "Classical");
         composers.add(comp1);
         composers.add(comp2);
         composers.add(comp3);

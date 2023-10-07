@@ -33,7 +33,7 @@ public class Composer {
         StringBuilder str = new StringBuilder();
         str.append("  ID: " + id + "\n");
         str.append("  Name: " + name + "\n");
-        str.append("  Genre: $" + genre + "\n");
+        str.append("  Genre: " + genre + "\n");
         return str.toString();
     } // End toString()
 
