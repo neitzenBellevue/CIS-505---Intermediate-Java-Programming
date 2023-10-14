@@ -1,5 +1,8 @@
-package FutureValueApp;
+/*
+ * Eitzen, N. (2023). CIS 505 Intermediate Java Programming. Bellevue University
+ */
 
+package FutureValueApp;
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -80,7 +83,6 @@ public class EitzenFutureValueApp extends Application{
         primaryStage.setScene(new Scene(pane));
         primaryStage.setTitle("Eitzen Future Value App");
         primaryStage.show();
-
     } // End Start(Stage)
 
     /*
@@ -89,6 +91,6 @@ public class EitzenFutureValueApp extends Application{
      */
     public static void main(String[] args) {
         launch(args);
-    }
-}
+    } // End main(String[])
+} // End EitzenFutureValueApp
 
