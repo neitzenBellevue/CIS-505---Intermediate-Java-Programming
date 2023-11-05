@@ -115,6 +115,18 @@ public class EitzenGradeBookApp extends Application{
       pane.add(new ComboBox<String>(options), 3, count);
    } // End addRow(int)
 
+   private void removeRow(int count){
+      //TBD, Will remove the last Row of gradebook information.
+   }
+
+   private void saveBook(){
+      //TBD, will pass on pane to Student class to process
+   }
+
+   private void loadBook(String fileName){
+      //TBD, Will read in the fileName and fill out rows with any student information found.
+   }
+
     /*
      * This main method launches the JavaFX Gui.
      * @param args String[]
