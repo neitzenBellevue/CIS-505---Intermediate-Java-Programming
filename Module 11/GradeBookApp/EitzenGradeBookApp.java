@@ -46,6 +46,9 @@ public class EitzenGradeBookApp extends Application{
    private ComboBox<String> cbGrades = new ComboBox<String>(); 
    private GridPane pane = new GridPane(); // GridPane used as the program will follow an Excel Style layout
 
+   // The following sets the csv files name.
+   private final String fileName = "students.csv";
+
    /*
    * The following method is used to create the application GUI. Implements button functionality.
    * @param primaryStage Stage
@@ -76,6 +79,7 @@ public class EitzenGradeBookApp extends Application{
       btnAddRow.setOnAction(e -> addRow(pane.getRowCount())); // Added to display functionality. Remove Button will act in reverse.
       btnRemoveRow.setOnAction(e -> removeRow(pane.getRowCount())); // Added to display functionality. Remove Button will act in reverse.
       btnClearForm.setOnAction(e -> clearBook());
+      btnSaveForm.setOnAction(e -> saveBook());
 
       // The following adds the labels for the student grade book rows. Formats it
       pane.add(lblFirstName, 0, 1);
@@ -112,8 +116,8 @@ public class EitzenGradeBookApp extends Application{
     * @param count int
     */
    private void addRow(int count){
-      pane.setRowIndex(btnAddRow, count);
-      pane.setRowIndex(btnRemoveRow, count);
+      GridPane.setRowIndex(btnAddRow, count);
+      GridPane.setRowIndex(btnRemoveRow, count);
       pane.add(new TextField(""), 0, count-1);
       pane.add(new TextField(""), 1, count-1);
       pane.add(new TextField(""), 2, count-1);
@@ -130,9 +134,9 @@ public class EitzenGradeBookApp extends Application{
     */
    private void removeRow(int count){
       if(count > 4){
-         pane.getChildren().removeIf(node -> pane.getRowIndex(node) == count-2);
-         pane.setRowIndex(btnAddRow, count-2);
-         pane.setRowIndex(btnRemoveRow, count-2);
+         pane.getChildren().removeIf(node -> GridPane.getRowIndex(node) == count-2);
+         GridPane.setRowIndex(btnAddRow, count-2);
+         GridPane.setRowIndex(btnRemoveRow, count-2);
       }
       else{
          Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -143,9 +147,61 @@ public class EitzenGradeBookApp extends Application{
      }
    }// End removeRow(int)
 
+   /*
+    * The following loops thru each Grade Book row and creates a student.
+    * Creates an array of Students and sends to Student class to write to a CSV.
+    */  
    private void saveBook(){
-      //TBD, will pass on pane to Student class to process
-   }
+      Student[] students = new Student[pane.getRowCount()-3];
+      ObservableList<Node> childrens = pane.getChildren();
+
+      /*
+       * The following loop is complicated. Basically, we are looping thru the GridPane, starting with the first valid row and ending with the last.
+       * Valid rows are any row that isn't dedicated to buttons. We go thru and assign first name, last name, course name, and grades based on expected column.
+       * Those values are used to create a student object which is stored into an array of students. Finally, we send the array to be written to a CSV file.
+       */
+      for(int row = 2; row <= pane.getRowCount() - 2; row++){ // This loop is mostly to keep track of the array's index.
+         String fName = "";
+         String lName = "";
+         String cName = "";
+         String grade = "";
+         for(Node node : childrens){ // This loop goes thru the nodes and extracts 
+            if(node instanceof TextField ){
+               if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == 0) {
+                  fName = ((TextField)node).getText();
+               }else if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == 1) {
+                  lName = ((TextField)node).getText();
+               }else if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == 2) {
+                  cName = ((TextField)node).getText();
+               }
+            }
+            else if(node instanceof ComboBox){
+               if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == 3 && !((ComboBox)node).getSelectionModel().isEmpty()){
+                  grade = ((ComboBox)node).getSelectionModel().getSelectedItem().toString();
+               }
+            }
+         } // End Node for loop
+         students[row-2] = new Student(fName, lName, cName, grade);
+      } // End Main for loop
+
+      // The following checks for any empty strings. Writes to csv if none found. Otherwise, throws an error.
+      boolean missing = false;
+      for(Student student : students){
+         if(student.getFirstName().equals("") | student.getLastName().equals("") 
+                  | student.getClass().equals("") | student.getGrade().equals("") ){
+            missing = true;
+            break;
+         }
+      }
+      if(!missing) Student.writeStudents(students, fileName);
+      else{ // Creates an alert if Grade Book not fully filled out.
+         Alert alert = new Alert(Alert.AlertType.ERROR);
+         alert.setTitle("Warning");
+         alert.setHeaderText("Your gradebook is not fully filled out. Progress not saved.");
+         alert.alertTypeProperty();
+         Optional<ButtonType> result = alert.showAndWait();
+      }
+   } // End saveBook()
 
    private void loadBook(String fileName){
       //TBD, Will read in the fileName and fill out rows with any student information found.
@@ -156,7 +212,7 @@ public class EitzenGradeBookApp extends Application{
     * This includes all excess rows removed, the first row cleared, add/remove button relocated.
     */
    private void clearBook(){
-      pane.getChildren().removeIf(node -> pane.getRowIndex(node) >= 3);
+      pane.getChildren().removeIf(node -> GridPane.getRowIndex(node) >= 3);
       txtCourseName.clear();
       txtFirstName.clear();
       txtLastName.clear();

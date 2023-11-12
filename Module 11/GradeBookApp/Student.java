@@ -6,9 +6,37 @@ package GradeBookApp;
 
 public class Student {
     private String firstName;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     private String lastName;
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     private String courseName;
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
     private String grade;
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
 
     /*
      * This constructor takes 4 strings and assigns them to the class variables.
@@ -34,11 +62,11 @@ public class Student {
         return csv.toString();
     } // End toString
 
-    public void writeStudents(Student[] students, String FileName){
+    public static void writeStudents(Student[] students, String FileName){
 
     }
 
-    public void readStudents(String fileName){
+    public static void readStudents(String fileName){
 
     }
 }
