@@ -70,16 +70,12 @@ public class EitzenGradeBookApp extends Application{
       btnRemoveRow.setTextFill(Color.RED);
       btnAddRow.setTextFill(Color.GREEN);
 
-      /*
-       * TBD
-       * Save Button writing a CSV File. Using Student Class.
-       * Load Button loading from CSV File. Using Student Class.
-       * Remove Button deleting last added row.
-       */
+      // The following adds functionality to the buttons.
       btnAddRow.setOnAction(e -> addRow(pane.getRowCount())); // Added to display functionality. Remove Button will act in reverse.
       btnRemoveRow.setOnAction(e -> removeRow(pane.getRowCount())); // Added to display functionality. Remove Button will act in reverse.
       btnClearForm.setOnAction(e -> clearBook());
       btnSaveForm.setOnAction(e -> saveBook());
+      btnLoadForm.setOnAction(e -> loadBook(fileName));
 
       // The following adds the labels for the student grade book rows. Formats it
       pane.add(lblFirstName, 0, 1);
@@ -203,9 +199,11 @@ public class EitzenGradeBookApp extends Application{
       }
    } // End saveBook()
 
+ 
+   // The following loads from a CSV file. Uses Student class to get array of students and transforms into the Gradebook.
    private void loadBook(String fileName){
-      //TBD, Will read in the fileName and fill out rows with any student information found.
-   }
+      Student[] students = Student.readStudents(fileName);
+   } // End loadBook
 
    /*
     * The following method resets the Grade Book to it's original state.

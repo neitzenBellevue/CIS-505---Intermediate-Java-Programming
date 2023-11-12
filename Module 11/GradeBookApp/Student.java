@@ -4,9 +4,12 @@
 
 package GradeBookApp;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.PrintWriter;
+import java.util.Scanner;
 
 public class Student {
     
@@ -35,7 +38,7 @@ public class Student {
         csv.append(firstName + ", ");
         csv.append(lastName + ", ");
         csv.append(courseName + ", ");
-        csv.append(grade + "\n");
+        csv.append(grade + " \n");
         return csv.toString();
     } // End toString
 
@@ -47,13 +50,39 @@ public class Student {
         File csvOut = new File(fileName);
         try (PrintWriter pw = new PrintWriter(csvOut) ){
             pw.write(csv.toString());
+            pw.close();
+            
         } catch (FileNotFoundException e) {
-            // TODO: handle exception
+            
         }
     } // End writeStudents(Student[], String)
 
-    public static void readStudents(String fileName){
-
+    public static Student[] readStudents(String fileName){
+        //The following determines how many students are in the CSV file.
+        BufferedReader reader;
+        int lines = 0;
+        try {
+            reader = new BufferedReader(new FileReader(fileName));
+            while (reader.readLine() != null) lines++;
+            reader.close();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+        }
+        Student[] students = new Student[lines];
+            try {
+                int i = 0;
+                Scanner scanner = new Scanner(new File(fileName));
+                scanner.useDelimiter(", ");
+                for(Student student : students){
+                    student = new Student(scanner.next(), scanner.next(), scanner.next(), scanner.nextLine());
+                    students[i] = student;
+                    i++;
+                }
+            } catch (FileNotFoundException e) {
+        
+            }
+        for(Student student : students) student.setGrade(student.getGrade().substring(2)); // This removes an extra comma and space.
+        return students;
     } // End readStudent(String)
 
     // This getter method retrieves the firstName variable.
