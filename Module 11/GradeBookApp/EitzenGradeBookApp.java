@@ -150,7 +150,6 @@ public class EitzenGradeBookApp extends Application{
    private void saveBook(){
       Student[] students = new Student[pane.getRowCount()-3];
       ObservableList<Node> childrens = pane.getChildren();
-
       /*
        * The following loop is complicated. Basically, we are looping thru the GridPane, starting with the first valid row and ending with the last.
        * Valid rows are any row that isn't dedicated to buttons. We go thru and assign first name, last name, course name, and grades based on expected column.
@@ -203,6 +202,27 @@ public class EitzenGradeBookApp extends Application{
    // The following loads from a CSV file. Uses Student class to get array of students and transforms into the Gradebook.
    private void loadBook(String fileName){
       Student[] students = Student.readStudents(fileName);
+      clearBook(); 
+      for(int i = 0; i < students.length-1; i++) addRow(pane.getRowCount()); // Add's appropriate number of rows after clearing book.
+      ObservableList<Node> children = pane.getChildren(); 
+      for(int row = 2; row <= pane.getRowCount() - 2; row++){ // The following loops thru and inserts student data into rows.
+         for(Node node: children){
+            if(node instanceof TextField ){
+               if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == 0) {
+                  ((TextField)node).setText(students[row-2].getFirstName());
+               }else if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == 1) {
+                  ((TextField)node).setText(students[row-2].getLastName());
+               }else if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == 2) {
+                  ((TextField)node).setText(students[row-2].getCourseName());
+               }
+            }else if(node instanceof ComboBox){
+               if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == 3){
+                  ((ComboBox)node).getSelectionModel().select(students[row-2].getGrade().stripTrailing());
+                  System.out.println((students[row-2].getGrade().stripTrailing()));
+               }
+            } // End if/else
+         } // End Node Loop 
+      }// End Main Loop
    } // End loadBook
 
    /*
