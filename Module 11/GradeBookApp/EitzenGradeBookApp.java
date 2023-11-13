@@ -188,7 +188,14 @@ public class EitzenGradeBookApp extends Application{
             break;
          }
       }
-      if(!missing) Student.writeStudents(students, fileName);
+      if(!missing) {
+         Student.writeStudents(students, fileName);
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+         alert.setTitle("Success");
+         alert.setHeaderText("Your gradebook has been saved.");
+         alert.alertTypeProperty();
+         Optional<ButtonType> result = alert.showAndWait();
+      }
       else{ // Creates an alert if Grade Book not fully filled out.
          Alert alert = new Alert(Alert.AlertType.ERROR);
          alert.setTitle("Warning");
